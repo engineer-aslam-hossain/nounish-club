@@ -8,7 +8,16 @@ import WhatToDo from "@/components/WhatToDo/WhatToDo";
 import FAQ from "@/components/FAQ/FAQ";
 import Footer from "@/components/Footer/Footer";
 
+import { Goerli, useEthers } from "@usedapp/core";
+import { useClaimName, useNumberOfClaims } from "../hooks/hooks";
+
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import FadeLoader from "react-spinners/FadeLoader";
+
 export default function Home() {
+  const { error, isLoading } = useEthers();
+
   return (
     <>
       <Head>
@@ -20,8 +29,15 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/Union.svg" />
       </Head>
+
       <Header />
       <HeroBanner />
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoading}
+      >
+        <FadeLoader color={"white"} loading={true} size={150} />
+      </Backdrop>
       <GradientBanner />
       <Proliferation />
       <WhatToDo />

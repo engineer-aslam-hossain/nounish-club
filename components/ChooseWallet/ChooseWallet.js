@@ -9,6 +9,8 @@ import classes from "./ChooseWallet.module.scss";
 import Image from "next/image";
 import { Box, Container } from "@mui/material";
 import Link from "next/link";
+import { Goerli, useEthers } from "@usedapp/core";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -53,6 +55,14 @@ const walletList = [
 ];
 
 export default function ChooseWallet({ open, handleClose }) {
+  const { account, deactivate, activateBrowserWallet, error, isLoading } =
+    useEthers();
+
+  const handleConnectWallet = () => {
+    activateBrowserWallet();
+    handleClose();
+  };
+
   return (
     <Dialog
       fullScreen
@@ -104,7 +114,7 @@ export default function ChooseWallet({ open, handleClose }) {
                 />
                 <h5>{wallet.title} </h5>
                 <p>{wallet.desc} </p>
-                <button>Connect Wallet </button>
+                <button onClick={handleConnectWallet}>Connect Wallet</button>
               </div>
             ))}
           </div>

@@ -5,8 +5,11 @@ import { useEffect, useState } from "react";
 import classes from "./Header.module.scss";
 import { Link } from "react-scroll";
 import ChooseWallet from "../ChooseWallet/ChooseWallet";
+import { Goerli, useEthers } from "@usedapp/core";
 
 const Header = () => {
+  //
+  //
   const [stickyClass, setStickyClass] = useState(false);
 
   const [open, setOpen] = useState(false);
@@ -18,6 +21,27 @@ const Header = () => {
   const handleClose = () => {
     setOpen(false);
   };
+  //
+  //
+  const ConnectButton = () => {
+    const { account, deactivate, activateBrowserWallet } = useEthers();
+
+    if (account) {
+      return (
+        <button className={classes.connect_button} onClick={() => deactivate()}>
+          Disconnect
+        </button>
+      );
+    } else {
+      return (
+        <button className={classes.connect_button} onClick={handleClickOpen}>
+          Connect Wallet
+        </button>
+      );
+    }
+  };
+
+  //
 
   useEffect(() => {
     window.addEventListener("scroll", stickNavbar);
@@ -58,9 +82,7 @@ const Header = () => {
             />
           </Link>
 
-          <button className={classes.connect_button} onClick={handleClickOpen}>
-            Connect Wallet
-          </button>
+          <ConnectButton />
         </div>
       </div>
       <ChooseWallet open={open} handleClose={handleClose} />
