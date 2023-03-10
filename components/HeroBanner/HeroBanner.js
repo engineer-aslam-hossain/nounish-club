@@ -25,7 +25,7 @@ const HeroBanner = () => {
     error: connectionError,
     deactivate,
   } = useEthers();
-  let { send, isLoading: claimLoading, error } = useClaimName();
+  let { send, isLoading: claimLoading, error, registeredName } = useClaimName();
   const claims = useNumberOfClaims(account);
 
   const handleChooseWalletOpen = () => {
@@ -66,6 +66,7 @@ const HeroBanner = () => {
   }, [error, deactivate]);
 
   //
+
   //
 
   return (
@@ -80,7 +81,6 @@ const HeroBanner = () => {
           The Nounish Club includes all the NNS numbers from 0 to 9999. 10k
           names which will be distributed to anyone, for free.
         </p>
-
         <button
           className={classes.claim}
           onClick={() => {
@@ -121,19 +121,20 @@ const HeroBanner = () => {
           open={chooseWalletOpen}
           handleClose={handleCloseChooseWalletOpen}
         />
-        {!error && (
-          <MintingProgress
-            open={mintingOpen}
-            handleClose={() => {
-              setMintingOpen(false);
-              setCompleteOpen(true);
-            }}
-          />
-        )}
+
+        <MintingProgress
+          open={mintingOpen}
+          claimLoading={claimLoading}
+          handleClose={() => {
+            setMintingOpen(false);
+            setCompleteOpen(true);
+          }}
+        />
         <Wrong open={wrongOpen} handleClose={handleWrongWindowClose} />
         <CompleteScreen
           open={completeOpen}
           handleClose={() => setCompleteOpen(false)}
+          registeredName={registeredName}
         />
       </div>
     </Container>

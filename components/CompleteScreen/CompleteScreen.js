@@ -11,7 +11,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const CompleteScreen = ({ open, handleClose }) => {
+const CompleteScreen = ({ open, handleClose, registeredName }) => {
   return (
     <Dialog
       fullScreen
@@ -45,7 +45,7 @@ const CompleteScreen = ({ open, handleClose }) => {
           <h2>
             Your Number in <span>Nounish Club</span>
           </h2>
-          <h3>245⌐◨-◨ to 9999⌐◨-◨</h3>
+          <h3>{registeredName}</h3>
           <div className={classes.wallet_card_deck}>
             <Image
               src="/nounish.gif"

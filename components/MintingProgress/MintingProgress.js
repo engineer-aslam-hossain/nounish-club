@@ -12,25 +12,25 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const MintingProgress = ({ open, handleClose }) => {
+const MintingProgress = ({ open, handleClose, claimLoading }) => {
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
     const timer = setInterval(() => {
       setProgress((oldProgress) => {
-        if (oldProgress === 100) {
+        if (!claimLoading) {
           open && handleClose();
           return 0;
         }
         const diff = Math.random() * 5;
-        return Math.min(oldProgress + diff, 100);
+        return Math.min(oldProgress + diff, 95);
       });
     }, 500);
 
     return () => {
       clearInterval(timer);
     };
-  }, [handleClose, open]);
+  }, [handleClose, open, claimLoading]);
 
   return (
     <Dialog
