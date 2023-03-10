@@ -10,7 +10,7 @@ const config = {
   readOnlyUrls: {
     [Goerli.chainId]: new providers.AlchemyProvider(
       "goerli",
-      "9hgspO71lWXbmuo_q6duzQYPCz5qHp0p"
+      process.env.NEXT_PUBLIC_ALCHEMY_PROVIDER
     ),
   },
 };

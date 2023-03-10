@@ -19,13 +19,14 @@ const HeroBanner = () => {
   const [mintingOpen, setMintingOpen] = useState(false);
   const [completeOpen, setCompleteOpen] = useState(false);
 
-  const {
-    account,
-    isLoading,
-    error: connectionError,
-    deactivate,
-  } = useEthers();
-  let { send, isLoading: claimLoading, error, registeredName } = useClaimName();
+  const { account, isLoading, deactivate } = useEthers();
+  let {
+    send,
+    isLoading: claimLoading,
+    error,
+    registeredName,
+    errorCode,
+  } = useClaimName();
   const claims = useNumberOfClaims(account);
 
   const handleChooseWalletOpen = () => {
@@ -36,21 +37,8 @@ const HeroBanner = () => {
     setChooseWalletOpen(false);
   };
 
-  const handleClickOpen = () => {
-    const loading = account && typeof claims === "undefined";
-
-    if (!connectionError && !isLoading && loading) {
-      setOpen(true);
-    }
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   const handleWrongWindowClose = () => {
     setWrongOpen(false);
-    // activateBrowserWallet();
   };
 
   useEffect(() => {
@@ -59,14 +47,18 @@ const HeroBanner = () => {
 
   useEffect(() => {
     if (error) {
-      setWrongOpen(true);
-      deactivate();
+      if (errorCode === 4001) {
+        setWrongOpen(true);
+      } else if (errorCode === -32603) {
+        setOpen(true);
+      } else {
+        setWrongOpen(true);
+      }
     }
     return () => {};
-  }, [error, deactivate]);
+  }, [error, deactivate, errorCode]);
 
   //
-
   //
 
   return (
@@ -94,10 +86,7 @@ const HeroBanner = () => {
         >
           Claim
         </button>
-        <ClaimAmount
-          handleClickOpen={handleClickOpen}
-          handleClose={handleClose}
-        />
+        {account && <ClaimAmount />}
         <button
           className={classes.scroll_down}
           onClick={() => {
@@ -116,7 +105,7 @@ const HeroBanner = () => {
             height={26}
           />
         </button>
-        <DiscordDialog open={open} handleClose={handleClose} />
+        <DiscordDialog open={open} />
         <ChooseWallet
           open={chooseWalletOpen}
           handleClose={handleCloseChooseWalletOpen}
@@ -131,11 +120,13 @@ const HeroBanner = () => {
           }}
         />
         <Wrong open={wrongOpen} handleClose={handleWrongWindowClose} />
-        <CompleteScreen
-          open={completeOpen}
-          handleClose={() => setCompleteOpen(false)}
-          registeredName={registeredName}
-        />
+        {registeredName && (
+          <CompleteScreen
+            open={completeOpen}
+            handleClose={() => setCompleteOpen(false)}
+            registeredName={registeredName}
+          />
+        )}
       </div>
     </Container>
   );

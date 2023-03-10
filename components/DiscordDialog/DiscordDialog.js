@@ -6,7 +6,7 @@ import DialogContent from "@mui/material/DialogContent";
 import classes from "./DiscordDialog.module.scss";
 import Link from "next/link";
 
-export default function DiscordDialog({ open, handleClose }) {
+export default function DiscordDialog({ open }) {
   return (
     <div>
       <Dialog
@@ -26,9 +26,8 @@ export default function DiscordDialog({ open, handleClose }) {
             It seems you don't have any claim available. Get one on Discord!
           </h2>
           <Link
-            href="https://discord.com/"
+            href="https://discord.com/invite/pnDEEK2caX"
             className={classes.discord}
-            onClick={handleClose}
           >
             Discord
           </Link>

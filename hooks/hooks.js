@@ -38,14 +38,16 @@ function useClaimName() {
 
   const registeredName =
     state.status === "Success" ? events?.[0]?.args[0] : null;
-  const isLoading = ["PendingSignature", "Mining"].includes(state.status);
+  const isLoading = ["Mining"].includes(state.status);
   const error = state.errorMessage;
+  const errorCode = state.errorCode;
 
   return {
     isLoading,
     send: () => send(resolvers[chainId], account),
     error,
     registeredName,
+    errorCode,
   };
 }
 

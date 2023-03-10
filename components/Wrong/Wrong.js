@@ -29,7 +29,7 @@ export default function Wrong({ open, handleClose }) {
         <DialogContent className={classes.dialog_title}>
           <h2>Something is wrong, pelase try again</h2>
           <button className={classes.discord} onClick={handleConnectWallet}>
-            Connect Wallet
+            Ok
           </button>
         </DialogContent>
       </Dialog>
