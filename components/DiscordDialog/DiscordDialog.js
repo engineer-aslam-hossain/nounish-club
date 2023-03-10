@@ -19,6 +19,7 @@ export default function DiscordDialog({ open }) {
             boxShadow: "none",
             maxWidth: {
               xs: "100vw",
+              md: "60vw",
               sx: "60vw",
             },
           },
@@ -29,6 +30,7 @@ export default function DiscordDialog({ open }) {
           sx={{
             padding: {
               sx: "5rem",
+              md: "5rem",
               xs: "2rem",
             },
           }}
@@ -40,7 +42,7 @@ export default function DiscordDialog({ open }) {
             href="https://discord.com/invite/pnDEEK2caX"
             className={classes.discord}
           >
-            Discord
+            Join Discord
           </Link>
         </DialogContent>
       </Dialog>

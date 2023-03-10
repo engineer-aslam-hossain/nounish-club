@@ -29,7 +29,7 @@ const Footer = () => {
         </div>
         <div className={classes.footer_bottom}>
           <div className={classes.social_media}>
-            <Link href="#">
+            <Link href="https://twitter.com/nnsprotocol">
               <Image
                 className={classes.logo_img}
                 src="/twitter.svg"
@@ -38,7 +38,7 @@ const Footer = () => {
                 height={25}
               />
             </Link>
-            <Link href="#">
+            <Link href="https://discord.com/invite/pnDEEK2caX">
               <Image
                 className={classes.logo_img}
                 src="/discord.svg"

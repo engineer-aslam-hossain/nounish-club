@@ -18,7 +18,7 @@ const config = {
 export default function App({ Component, pageProps }) {
   return (
     <DAppProvider config={config}>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </DAppProvider>
   );
 }

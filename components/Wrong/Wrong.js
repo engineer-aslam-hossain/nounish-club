@@ -25,6 +25,7 @@ export default function Wrong({ open, handleClose }) {
             maxWidth: {
               xs: "100vw",
               sx: "60vw",
+              md: "60vw",
             },
           },
         }}
@@ -34,11 +35,14 @@ export default function Wrong({ open, handleClose }) {
           sx={{
             padding: {
               sx: "5rem",
+              md: "5rem",
               xs: "2rem",
             },
           }}
         >
-          <h2>Something is wrong, pelase try again</h2>
+          <h2>
+            Something is wrong. <br /> Please try again.
+          </h2>
           <button className={classes.discord} onClick={handleConnectWallet}>
             Ok
           </button>

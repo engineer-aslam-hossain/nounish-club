@@ -81,7 +81,6 @@ const MintingProgress = ({ open, handleClose, claimLoading }) => {
                 },
               }}
             />
-            <p>Pelease wait we are generating your Nounish Club Number</p>
           </div>
         </div>
       </Container>

@@ -6,6 +6,7 @@ import Slide from "@mui/material/Slide";
 import classes from "./CompleteScreen.module.scss";
 import Image from "next/image";
 import { Box, Container } from "@mui/material";
+import Link from "next/link";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -31,13 +32,15 @@ const CompleteScreen = ({ open, handleClose, registeredName }) => {
           color="transparent"
         >
           <Toolbar>
-            <Image
-              className={classes.logo_img}
-              src="/logo.svg"
-              alt="logo"
-              width={278}
-              height={32}
-            />
+            <button onClick={handleClose} className={classes.logo_img_button}>
+              <Image
+                className={classes.logo_img}
+                src="/logo.svg"
+                alt="logo"
+                width={278}
+                height={32}
+              />
+            </button>
             <Box sx={{ flexGrow: "1" }} />
           </Toolbar>
         </AppBar>
@@ -53,9 +56,12 @@ const CompleteScreen = ({ open, handleClose, registeredName }) => {
               height={317}
               alt="animated_gif"
             />
-            <button className={classes.discord} onClick={handleClose}>
+            <Link
+              href={`https://app.nns.xyz/name/${registeredName}.%E2%8C%90%E2%97%A8-%E2%97%A8/details`}
+              className={classes.discord}
+            >
               Manage
-            </button>
+            </Link>
           </div>
         </div>
       </Container>
