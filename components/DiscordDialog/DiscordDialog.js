@@ -14,14 +14,25 @@ export default function DiscordDialog({ open }) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         PaperProps={{
-          style: {
+          sx: {
             backgroundColor: "#1F1F23",
             boxShadow: "none",
-            maxWidth: "60vw",
+            maxWidth: {
+              xs: "100vw",
+              sx: "60vw",
+            },
           },
         }}
       >
-        <DialogContent className={classes.dialog_title}>
+        <DialogContent
+          className={classes.dialog_title}
+          sx={{
+            padding: {
+              sx: "5rem",
+              xs: "2rem",
+            },
+          }}
+        >
           <h2>
             It seems you don't have any claim available. Get one on Discord!
           </h2>

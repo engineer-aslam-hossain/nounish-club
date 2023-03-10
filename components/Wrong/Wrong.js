@@ -22,11 +22,22 @@ export default function Wrong({ open, handleClose }) {
           style: {
             backgroundColor: "#1F1F23",
             boxShadow: "none",
-            maxWidth: "60vw",
+            maxWidth: {
+              xs: "100vw",
+              sx: "60vw",
+            },
           },
         }}
       >
-        <DialogContent className={classes.dialog_title}>
+        <DialogContent
+          className={classes.dialog_title}
+          sx={{
+            padding: {
+              sx: "5rem",
+              xs: "2rem",
+            },
+          }}
+        >
           <h2>Something is wrong, pelase try again</h2>
           <button className={classes.discord} onClick={handleConnectWallet}>
             Ok
