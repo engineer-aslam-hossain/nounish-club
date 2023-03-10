@@ -1,8 +1,6 @@
-const { useMemo, useState, useEffect } = require("react");
+const { useMemo } = require("react");
 const { useEthers, useCall, useContractFunction } = require("@usedapp/core");
 const { contracts, resolvers } = require("../contracts/controller");
-const namehash = require("@ensdomains/eth-ens-namehash");
-const ethers = require("ethers");
 
 // useNumberOfClaims returns the number of avilable claims for the current account.
 function useNumberOfClaims(address) {

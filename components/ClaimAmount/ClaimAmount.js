@@ -2,7 +2,7 @@ import { useEthers } from "@usedapp/core";
 import { useCallback, useEffect } from "react";
 import { useNumberOfClaims } from "../../hooks/hooks";
 
-const ClaimAmount = ({ handleClickOpen }) => {
+const ClaimAmount = ({ handleClickOpen, handleClose }) => {
   const { account, isLoading } = useEthers();
   const claims = useNumberOfClaims(account);
 
@@ -10,10 +10,18 @@ const ClaimAmount = ({ handleClickOpen }) => {
     const loading = account && typeof claims === "undefined";
 
     if (!isLoading && loading) {
-      handleClickOpen();
+      setTimeout(() => {
+        handleClickOpen();
+      }, 2500);
+    } else {
+      handleClose();
     }
-  }, [claims, account, isLoading, handleClickOpen]);
 
+    //
+    //
+  }, [claims, account, isLoading, handleClickOpen, handleClose]);
+  //
+  //
   useEffect(() => {
     handleSubmit();
   }, [handleSubmit]);

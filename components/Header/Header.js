@@ -1,18 +1,18 @@
-import { Container } from "@mui/material";
-
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import classes from "./Header.module.scss";
 import { Link } from "react-scroll";
 import ChooseWallet from "../ChooseWallet/ChooseWallet";
-import { Goerli, useEthers } from "@usedapp/core";
+import { useEthers } from "@usedapp/core";
+import Wrong from "../Wrong/Wrong";
 
 const Header = () => {
   //
   //
   const [stickyClass, setStickyClass] = useState(false);
-
   const [open, setOpen] = useState(false);
+  const [wrongOpen, setWrongOpen] = useState(false);
+  const { error } = useEthers();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -24,7 +24,7 @@ const Header = () => {
   //
   //
   const ConnectButton = () => {
-    const { account, deactivate, activateBrowserWallet } = useEthers();
+    const { account, deactivate } = useEthers();
 
     if (account) {
       return (
@@ -59,6 +59,10 @@ const Header = () => {
     }
   };
 
+  useEffect(() => {
+    if (error) setWrongOpen(true);
+  }, [error]);
+
   return (
     // <Container>
     <>
@@ -86,6 +90,7 @@ const Header = () => {
         </div>
       </div>
       <ChooseWallet open={open} handleClose={handleClose} />
+      <Wrong open={wrongOpen} handleClose={() => setWrongOpen(false)} />
     </>
     // </Container>
   );

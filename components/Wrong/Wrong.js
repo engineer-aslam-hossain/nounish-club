@@ -3,10 +3,15 @@ import * as React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 
-import classes from "./DiscordDialog.module.scss";
-import Link from "next/link";
+import classes from "./Wrong.module.scss";
 
-export default function DiscordDialog({ open, handleClose }) {
+export default function Wrong({ open, handleClose }) {
+  //
+
+  const handleConnectWallet = () => {
+    handleClose();
+  };
+  //
   return (
     <div>
       <Dialog
@@ -22,16 +27,10 @@ export default function DiscordDialog({ open, handleClose }) {
         }}
       >
         <DialogContent className={classes.dialog_title}>
-          <h2>
-            It seems you don't have any claim available. Get one on Discord!
-          </h2>
-          <Link
-            href="https://discord.com/"
-            className={classes.discord}
-            onClick={handleClose}
-          >
-            Discord
-          </Link>
+          <h2>Something is wrong, pelase try again</h2>
+          <button className={classes.discord} onClick={handleConnectWallet}>
+            Connect Wallet
+          </button>
         </DialogContent>
       </Dialog>
     </div>

@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "@/styles/Home.module.scss";
 import Header from "@/components/Header/Header";
 import HeroBanner from "@/components/HeroBanner/HeroBanner";
 import GradientBanner from "@/components/GradientBanner/GradientBanner";
@@ -8,15 +7,13 @@ import WhatToDo from "@/components/WhatToDo/WhatToDo";
 import FAQ from "@/components/FAQ/FAQ";
 import Footer from "@/components/Footer/Footer";
 
-import { Goerli, useEthers } from "@usedapp/core";
-import { useClaimName, useNumberOfClaims } from "../hooks/hooks";
+import { useEthers } from "@usedapp/core";
 
 import Backdrop from "@mui/material/Backdrop";
-import CircularProgress from "@mui/material/CircularProgress";
 import FadeLoader from "react-spinners/FadeLoader";
 
 export default function Home() {
-  const { error, isLoading } = useEthers();
+  const { isLoading } = useEthers();
 
   return (
     <>

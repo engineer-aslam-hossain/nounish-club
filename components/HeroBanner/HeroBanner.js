@@ -2,21 +2,29 @@ import { Container } from "@mui/material";
 import Image from "next/image";
 import classes from "./HeroBanner.module.scss";
 
-import { Link } from "react-scroll";
 import { useEthers } from "@usedapp/core";
 import { useClaimName, useNumberOfClaims } from "../../hooks/hooks";
 import DiscordDialog from "../DiscordDialog/DiscordDialog";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ChooseWallet from "../ChooseWallet/ChooseWallet";
 import ClaimAmount from "../ClaimAmount/ClaimAmount";
+import MintingProgress from "../MintingProgress/MintingProgress";
+import Wrong from "../Wrong/Wrong";
 
 const HeroBanner = () => {
   const [open, setOpen] = useState(false);
-  const { account, isLoading } = useEthers();
-  const claims = useNumberOfClaims(account);
-  let { send } = useClaimName();
-
+  const [wrongOpen, setWrongOpen] = useState(false);
   const [chooseWalletOpen, setChooseWalletOpen] = useState(false);
+  const [mintingOpen, setMintingOpen] = useState(false);
+
+  const {
+    account,
+    isLoading,
+    error: connectionError,
+    deactivate,
+  } = useEthers();
+  let { send, isLoading: claimLoading, error } = useClaimName();
+  const claims = useNumberOfClaims(account);
 
   const handleChooseWalletOpen = () => {
     setChooseWalletOpen(true);
@@ -27,27 +35,35 @@ const HeroBanner = () => {
   };
 
   const handleClickOpen = () => {
-    setOpen(true);
+    const loading = account && typeof claims === "undefined";
+
+    if (!connectionError && !isLoading && loading) {
+      setOpen(true);
+    }
   };
 
   const handleClose = () => {
     setOpen(false);
   };
 
+  const handleWrongWindowClose = () => {
+    setWrongOpen(false);
+    // activateBrowserWallet();
+  };
+
+  useEffect(() => {
+    if (claimLoading) setMintingOpen(true);
+  }, [claimLoading]);
+
+  useEffect(() => {
+    if (error) {
+      setWrongOpen(true);
+      deactivate();
+    }
+    return () => {};
+  }, [error, deactivate]);
+
   //
-
-  // const handleSubmit = useCallback(() => {
-  //   const loading = account && typeof claims === "undefined";
-
-  //   if (!isLoading && loading) {
-  //     handleClickOpen();
-  //   }
-  // }, [claims, account, isLoading]);
-
-  // useEffect(() => {
-  //   handleSubmit();
-  // }, [handleSubmit]);
-
   //
 
   return (
@@ -69,7 +85,6 @@ const HeroBanner = () => {
             if (!account) {
               handleChooseWalletOpen();
             }
-
             if (account && !isLoading) {
               send();
             }
@@ -77,14 +92,20 @@ const HeroBanner = () => {
         >
           Claim
         </button>
-        <ClaimAmount handleClickOpen={handleClickOpen} />
-        <Link
-          to="footer"
-          spy={true}
-          smooth={true}
-          offset={50}
-          duration={1000}
+        <ClaimAmount
+          handleClickOpen={handleClickOpen}
+          handleClose={handleClose}
+        />
+        <button
           className={classes.scroll_down}
+          onClick={() => {
+            if (!account) {
+              handleChooseWalletOpen();
+            }
+            if (account && !isLoading) {
+              send();
+            }
+          }}
         >
           <Image
             src="/Subtract.svg"
@@ -92,12 +113,19 @@ const HeroBanner = () => {
             width={40}
             height={26}
           />
-        </Link>
+        </button>
         <DiscordDialog open={open} handleClose={handleClose} />
         <ChooseWallet
           open={chooseWalletOpen}
           handleClose={handleCloseChooseWalletOpen}
         />
+        {!error && (
+          <MintingProgress
+            open={mintingOpen}
+            handleClose={() => setMintingOpen(false)}
+          />
+        )}
+        <Wrong open={wrongOpen} handleClose={handleWrongWindowClose} />
       </div>
     </Container>
   );

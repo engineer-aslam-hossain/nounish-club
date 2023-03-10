@@ -8,9 +8,7 @@ import Slide from "@mui/material/Slide";
 import classes from "./ChooseWallet.module.scss";
 import Image from "next/image";
 import { Box, Container } from "@mui/material";
-import Link from "next/link";
-import { Goerli, useEthers } from "@usedapp/core";
-import ClipLoader from "react-spinners/ClipLoader";
+import { useEthers } from "@usedapp/core";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -55,8 +53,7 @@ const walletList = [
 ];
 
 export default function ChooseWallet({ open, handleClose }) {
-  const { account, deactivate, activateBrowserWallet, error, isLoading } =
-    useEthers();
+  const { activateBrowserWallet } = useEthers();
 
   const handleConnectWallet = () => {
     activateBrowserWallet();
