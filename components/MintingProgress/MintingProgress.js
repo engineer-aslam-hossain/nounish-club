@@ -19,7 +19,7 @@ const MintingProgress = ({ open, handleClose }) => {
     const timer = setInterval(() => {
       setProgress((oldProgress) => {
         if (oldProgress === 100) {
-          handleClose();
+          open && handleClose();
           return 0;
         }
         const diff = Math.random() * 5;
@@ -30,7 +30,7 @@ const MintingProgress = ({ open, handleClose }) => {
     return () => {
       clearInterval(timer);
     };
-  }, [handleClose]);
+  }, [handleClose, open]);
 
   return (
     <Dialog

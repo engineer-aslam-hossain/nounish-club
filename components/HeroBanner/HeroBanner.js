@@ -10,12 +10,14 @@ import ChooseWallet from "../ChooseWallet/ChooseWallet";
 import ClaimAmount from "../ClaimAmount/ClaimAmount";
 import MintingProgress from "../MintingProgress/MintingProgress";
 import Wrong from "../Wrong/Wrong";
+import CompleteScreen from "../CompleteScreen/CompleteScreen";
 
 const HeroBanner = () => {
   const [open, setOpen] = useState(false);
   const [wrongOpen, setWrongOpen] = useState(false);
   const [chooseWalletOpen, setChooseWalletOpen] = useState(false);
   const [mintingOpen, setMintingOpen] = useState(false);
+  const [completeOpen, setCompleteOpen] = useState(false);
 
   const {
     account,
@@ -122,10 +124,17 @@ const HeroBanner = () => {
         {!error && (
           <MintingProgress
             open={mintingOpen}
-            handleClose={() => setMintingOpen(false)}
+            handleClose={() => {
+              setMintingOpen(false);
+              setCompleteOpen(true);
+            }}
           />
         )}
         <Wrong open={wrongOpen} handleClose={handleWrongWindowClose} />
+        <CompleteScreen
+          open={completeOpen}
+          handleClose={() => setCompleteOpen(false)}
+        />
       </div>
     </Container>
   );
