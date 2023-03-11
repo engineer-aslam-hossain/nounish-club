@@ -120,6 +120,7 @@ const HeroBanner = () => {
           }}
         />
         <Wrong open={wrongOpen} handleClose={handleWrongWindowClose} />
+
         {registeredName && (
           <CompleteScreen
             open={completeOpen}

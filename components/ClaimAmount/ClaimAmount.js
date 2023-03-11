@@ -6,7 +6,7 @@ const ClaimAmount = () => {
   const claims = useNumberOfClaims(account);
 
   return (
-    <h6>Claims available: {typeof claims === "undefined" ? "..." : claims}</h6>
+    <h2>Claims available: {typeof claims === "undefined" ? "..." : claims}</h2>
   );
 };
 

@@ -24,6 +24,17 @@ export default function Home() {
           content="The Nounish Club includes all the NNS numbers from 0 to 9999. 10k names which will be distributed to anyone, for free."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="UTF-8" />
+        <meta
+          property="og:title"
+          content="Spread the culture. Join the Nounish Club."
+        />
+        <meta
+          property="og:description"
+          content="The Nounish Club includes all the NNS numbers from 0 to 9999. 10k names which will be distributed to anyone, for free."
+        />
+        <meta property="og:image" content="/Union.svg" />
+
         <link rel="icon" href="/Union.svg" />
       </Head>
 

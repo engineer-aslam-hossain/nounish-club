@@ -5,7 +5,7 @@ button.logo_img_button {
   cursor: pointer;
 }
 
-.choose_wallet_container {
+.complete_container {
   padding-top: 5rem;
 
   h2 {
@@ -51,14 +51,14 @@ button.logo_img_button {
     color: #ffffff;
   }
 
-  .wallet_card_deck {
+  .content {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin-top: 2rem;
 
-    .discord {
+    .manage {
       width: 177px;
       height: 53px;
       color: white;
@@ -94,8 +94,8 @@ button.logo_img_button {
 }
 
 @media (max-width: 992px) {
-  .choose_wallet_container {
-    .wallet_card_deck {
+  .complete_container {
+    .content {
       padding: 0 2rem;
     }
   }
@@ -104,7 +104,7 @@ button.logo_img_button {
   .logo_img {
     width: 130px;
   }
-  .choose_wallet_container {
+  .complete_container {
     padding-top: 1rem;
     padding-bottom: 5rem;
     h2 {

@@ -135,8 +135,6 @@ const FAQ = () => {
                   key={indx}
                 >
                   <AccordionSummary
-                    aria-controls="panel1d-content"
-                    id="panel1d-header"
                     expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
                   >
                     <Typography>{item.title}</Typography>
@@ -164,8 +162,6 @@ const FAQ = () => {
                   key={indx}
                 >
                   <AccordionSummary
-                    aria-controls="panel1d-content"
-                    id="panel1d-header"
                     expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
                   >
                     <Typography>{item.title}</Typography>

@@ -61,12 +61,12 @@ const MintingProgress = ({ open, handleClose, claimLoading }) => {
             <Box sx={{ flexGrow: "1" }} />
           </Toolbar>
         </AppBar>
-        <div className={classes.choose_wallet_container}>
+        <div className={classes.minting_container}>
           <h2>
             Hold on. We are generating your <br /> <span>Nounish Club</span>{" "}
             number
           </h2>
-          <div className={classes.wallet_card_deck}>
+          <div className={classes.minting_content}>
             <h2>{progress.toFixed()}%</h2>
             <LinearProgress
               variant="determinate"

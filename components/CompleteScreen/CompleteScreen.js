@@ -44,12 +44,12 @@ const CompleteScreen = ({ open, handleClose, registeredName }) => {
             <Box sx={{ flexGrow: "1" }} />
           </Toolbar>
         </AppBar>
-        <div className={classes.choose_wallet_container}>
+        <div className={classes.complete_container}>
           <h2>
             Your Number in <span>Nounish Club</span>
           </h2>
           <h3>{registeredName}</h3>
-          <div className={classes.wallet_card_deck}>
+          <div className={classes.content}>
             <Image
               src="/nounish.gif"
               width={317}
@@ -58,7 +58,7 @@ const CompleteScreen = ({ open, handleClose, registeredName }) => {
             />
             <Link
               href={`https://app.nns.xyz/name/${registeredName}.%E2%8C%90%E2%97%A8-%E2%97%A8/details`}
-              className={classes.discord}
+              className={classes.manage}
             >
               Manage
             </Link>

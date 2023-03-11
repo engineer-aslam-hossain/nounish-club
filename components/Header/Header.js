@@ -71,6 +71,7 @@ const Header = () => {
       >
         <div className={classes.header_toolbar}>
           <Link
+            href="#"
             to="hero"
             spy={true}
             smooth={true}

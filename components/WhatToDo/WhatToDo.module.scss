@@ -22,7 +22,7 @@
     display: grid;
     grid-template-rows: 1fr 180px;
 
-    h5 {
+    p {
       font-family: "Londrina Solid";
       position: relative;
       font-style: normal;
@@ -33,6 +33,7 @@
       margin-top: 4rem;
       z-index: 100;
       max-width: 258px;
+      margin-bottom: 0;
     }
 
     .gradient_card_number {

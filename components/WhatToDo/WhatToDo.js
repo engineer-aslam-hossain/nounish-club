@@ -45,7 +45,7 @@ const WhatToDo = () => {
                   alt="card_img"
                 />
               </div>
-              <h5>{card.title} </h5>
+              <p>{card.title} </p>
               <div className={classes.gradient_card_number}>
                 <h2>{indx + 1}</h2>
               </div>

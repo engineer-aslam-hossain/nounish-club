@@ -11,6 +11,7 @@ const Footer = () => {
       <footer className={classes.footer}>
         <div className={classes.footer_top}>
           <ScrollLink
+            href="#"
             to="hero"
             spy={true}
             smooth={true}
